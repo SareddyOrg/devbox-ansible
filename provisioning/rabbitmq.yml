@@ -1,0 +1,6 @@
+- name: Rabbitmq | install
+  apt: pkg={{item}}
+  with_items:
+    - rabbitmq-server
+    - amqp-tools
+    - librabbitmq0
