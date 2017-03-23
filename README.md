@@ -1,5 +1,5 @@
-Development Box
-===================
+Elixir Development Box
+======================
 
 This my personal development environment. There are many like it, but
 this one is mine.
