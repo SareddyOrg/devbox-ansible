@@ -3,9 +3,9 @@
   tasks:
     - name: Apt | update cache
       apt: update_cache=yes cache_valid_time=3600
-    - include: python.yml version=2.7.9 executable=python2.7 easy_install_version=2.7
-    - include: python.yml version=3.4.2 executable=python3.4 easy_install_version=3.4
-    - include: erlang.yml version=17.4
+    - include: python.yml version=2.7.13 executable=python2.7 easy_install_version=2.7
+    - include: python.yml version=3.6.1 executable=python3.6 easy_install_version=3.6
+    - include: erlang.yml version=19.3
     - include: git.yml
   vars:
     user_name: Scott Moynes
