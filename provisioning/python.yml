@@ -11,41 +11,36 @@
     - zlib1g-dev
     - libssl-dev
 - name: Python {{version}} | download
-  sudo: no
   get_url: url=https://python.org/ftp/python/{{version}}/Python-{{version}}.tgz
            dest=/tmp/Python-{{version}}.tgz
 - name: Python {{version}} | extract
-  sudo: no
   command: tar zxf Python-{{version}}.tgz
            creates=/tmp/Python-{{version}}
            chdir=/tmp
 - name: Python {{version}} | configure
-  sudo: no
   command: sh configure --enable-ipv6 --prefix=/usr/local
            chdir=/tmp/Python-{{version}}
            creates=/tmp/Python-{{version}}/Makefile
 - name: Python {{version}} | build
-  sudo: no
   command: make
            chdir=/tmp/Python-{{version}}
            creates=/tmp/Python-{{version}}/python
 - name: Python {{version}} | install
-  sudo: yes
+  become: yes
   command: make altinstall
            chdir=/tmp/Python-{{version}}
            creates=/usr/local/bin/{{executable}}
 - name: Python {{version}} | download pip installer
-  sudo: no
   get_url: url=https://bootstrap.pypa.io/get-pip.py
            dest=/tmp/get-pip.py
 - name: Python {{version}} install pip
-  sudo: yes
+  become: yes
   command: /usr/local/bin/{{executable}} /tmp/get-pip.py
 - name: Python {{version}} | install virtualenv
-  sudo: yes
+  become: yes
   pip: name=virtualenv executable=/usr/local/bin/pip{{easy_install_version}}
 - name: Python {{version}} | remove unversioned executables
-  sudo: yes
+  become: yes
   file: path=/usr/local/bin/{{item}} state=absent
   with_items:
     - pip
