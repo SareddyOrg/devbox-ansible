@@ -1,5 +1,5 @@
 - name: Erlang | Add apt repository
-  apt_repository: repo="deb http://packages.erlang-solutions.com/ubuntu trusty contrib"
+  apt_repository: repo="deb http://packages.erlang-solutions.com/ubuntu xenial contrib"
                   state=present
 
 - name: Erlang | Add vendor key
