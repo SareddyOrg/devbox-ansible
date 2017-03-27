@@ -1,5 +1,5 @@
 - name: Git | install git
   apt: pkg=git
 - name: Git | configure
-  template: src=git-config.j2 dest=/home/vagrant/.gitconfig
-    owner=vagrant group=vagrant mode=644
+  template: src=git-config.j2 dest=/home/ubuntu/.gitconfig
+    owner=ubuntu group=ubuntu mode=644
