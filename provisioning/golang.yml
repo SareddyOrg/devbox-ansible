@@ -19,14 +19,20 @@
     dest: /usr/local/go/{{version}}
     creates: /usr/local/go/{{version}}/go
 
-- name: Golang | Set GOROOT {{ version }}
-  template:
-    src: golang-profile.j2
-    dest: /etc/profile.d/golang
-    mode: 0644
-    owner: root
-    group: root
-    force: yes
+- name: Golang | set default GOROOT in bashrc
+  lineinfile:
+    dest: /home/vagrant/.bashrc
+    regexp: '^export GOROOT='
+    line: 'export GOROOT=/usr/local/go/{{version}}/go'
+  when:
+    - default is defined
+    - default
+
+- name: Golang | add GOROOT to path
+  lineinfile:
+    dest: /home/vagrant/.bashrc
+    regexp: '^export PATH=.GOROOT/bin:'
+    line: 'export PATH=$GOROOT/bin:$PATH'
   when:
     - default is defined
     - default
