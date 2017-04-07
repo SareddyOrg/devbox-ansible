@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+GOROOT=/usr/local/go/{{ version }}/go
+PATH=${PATH}:/usr/local/go/{{ version }}/go/bin
+
+export GOROOT PATH

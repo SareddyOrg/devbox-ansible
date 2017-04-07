@@ -1,0 +1,32 @@
+- name: Golang | Download {{ version }} archive
+  get_url:
+    url: https://storage.googleapis.com/golang/go{{version}}.linux-amd64.tar.gz
+    sha256sum: "{{ sha256sum }}"
+    dest: /tmp/go{{version}}.linux-amd64.tar.gz
+
+- name: Golang | Create target directory
+  file:
+    path: /usr/local/go/{{version}}
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Golang | Extract {{version}} archive
+  unarchive:
+    src: /tmp/go{{version}}.linux-amd64.tar.gz
+    remote_src: true
+    dest: /usr/local/go/{{version}}
+    creates: /usr/local/go/{{version}}/go
+
+- name: Golang | Set GOROOT {{ version }}
+  template:
+    src: golang-profile.j2
+    dest: /etc/profile.d/golang
+    mode: 0644
+    owner: root
+    group: root
+    force: yes
+  when:
+    - default is defined
+    - default
