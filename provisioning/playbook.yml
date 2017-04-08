@@ -13,7 +13,7 @@
         default: yes
         version: 1.8
         sha256sum: 53ab94104ee3923e228a2cb2116e5e462ad3ebaeea06ff04463479d7f12d27ca
-    - include: erlang.yml version=19.3
+    - include: erlang.yml otp_version=19.3 elixir_version=1.4.1-1
     - include: python.yml version=2.7.13 executable=python2.7 easy_install_version=2.7
     - include: python.yml version=3.6.1 executable=python3.6 easy_install_version=3.6
     - include: git.yml
