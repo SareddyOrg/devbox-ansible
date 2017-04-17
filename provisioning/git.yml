@@ -1,5 +1,12 @@
 - name: Git | install git
-  apt: pkg=git
+  apt:
+    pkg: git
+    state: present
+
 - name: Git | configure
-  template: src=git-config.j2 dest=/home/ubuntu/.gitconfig
-    owner=ubuntu group=ubuntu mode=644
+  template:
+    src: git-config.j2
+    dest: /home/ubuntu/.gitconfig
+    owner: ubuntu
+    group: ubuntu
+    mode: 644
